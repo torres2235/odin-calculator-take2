@@ -1,3 +1,8 @@
+body {
+    display: flex;
+    justify-content: center;
+}
+
 #calculator {
     display: flex;
     flex-direction: column;
@@ -5,7 +10,9 @@
     align-items: center;
     margin-top: 50px;
 
-    background-color: gray;
+    background-color: lightgray;
+    width: 200px;
+    height: 300px;
 }
 
 input {
