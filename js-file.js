@@ -1,5 +1,5 @@
 let add = (x,y) => {
-    return x + y;
+    return parseInt(x) + parseInt(y);
 }
 
 let sub = (x,y) => {
@@ -11,7 +11,11 @@ let mult = (x,y) => {
 }
 
 let divi = (x,y) => {
-    return x / y;
+    if(y==0) {
+        console.log("Div by 0!!!")
+    } else {
+        return x / y;
+    }
 }
 
 let operate = (operator, x, y) => {
@@ -33,6 +37,10 @@ let operate = (operator, x, y) => {
             break;
     }
 }
+//Global Vars
+let decimal = 0;
+let currentNum;
+let currentOp;
 
 //----------------updating display------------------
 let display = document.querySelector('#display');
@@ -51,7 +59,9 @@ buttons.forEach((num) => {
         display.value = num.id;
     } else {
         display.value += num.id;
-    }   
+    }
+    
+    
   });
 });
 //--------------------------------------------------
@@ -60,5 +70,26 @@ buttons.forEach((num) => {
 let clear = document.querySelector('#clear');
 clear.addEventListener('click', () => {
     display.value = 0;
+    currentNum = 0;
 });
 //--------------------------------------------------
+
+//-------------operators----------------
+let operators = document.querySelectorAll('.op');
+
+operators.forEach((op) => {
+    op.addEventListener('click', () => {
+        currentNum = display.value;
+        currentOp = op.id;
+        display.value = 0;
+    });
+});
+//---------------------------------------
+
+
+//-------------------equals----------------
+let equals = document.querySelector('#equals');
+equals.addEventListener('click', () => {
+    display.value = operate(currentOp,currentNum,display.value);
+});
+//------------------------------------------
