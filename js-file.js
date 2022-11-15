@@ -33,3 +33,24 @@ let operate = (operator, x, y) => {
             break;
     }
 }
+
+//----------------updating display------------------
+let display = document.querySelector('#display');
+display.value = 0; //reset display back to 0 when refreshing
+
+// buttons is a node list. It looks and acts much like an array.
+const buttons = document.querySelectorAll('.num');
+
+// we use the .forEach method to iterate through each button
+buttons.forEach((num) => {
+
+  // and for each one we add a 'click' listener
+  num.addEventListener('click', () => {
+    //alert(button.id);
+    if(display.value == 0) {
+        display.value = num.id;
+    } else {
+        display.value += num.id;
+    }   
+  });
+});
