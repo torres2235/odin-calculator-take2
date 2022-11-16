@@ -30,7 +30,7 @@ let operate = (operator, x, y) => {
             return mult(x,y);
             break;
         case "/":
-            return div(x,y);
+            return divi(x,y);
             break;
         default:
             console.log("Invalid");
@@ -41,6 +41,7 @@ let operate = (operator, x, y) => {
 let decimal = 0;
 let currentNum;
 let currentOp;
+let preview = document.querySelector('#preview');
 
 //----------------updating display------------------
 let display = document.querySelector('#display');
@@ -69,6 +70,7 @@ buttons.forEach((num) => {
 //--------------clear display-----------------------
 let clear = document.querySelector('#clear');
 clear.addEventListener('click', () => {
+    preview.textContent = '';
     display.value = 0;
     currentNum = 0;
 });
@@ -81,6 +83,7 @@ operators.forEach((op) => {
     op.addEventListener('click', () => {
         currentNum = display.value;
         currentOp = op.id;
+        preview.textContent = currentNum + ' ' + currentOp;
         display.value = 0;
     });
 });
@@ -90,6 +93,7 @@ operators.forEach((op) => {
 //-------------------equals----------------
 let equals = document.querySelector('#equals');
 equals.addEventListener('click', () => {
+    preview.textContent += ' '+ display.value +  ' =';
     display.value = operate(currentOp,currentNum,display.value);
 });
 //------------------------------------------
